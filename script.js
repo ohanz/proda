@@ -2,24 +2,28 @@
 
 const proda = [
     {
+      id: 1,
         nama: 'proda 1',
         des: 'This is proda 1',
         la_price: 20.40,
         imago: "",
     },
     {
+      id: 2,
         nama: 'proda 2',
         des: 'This is proda 2',
         la_price: 13.95,
         imago: "",
     },
     {
+      id: 3,
         nama: 'proda 3',
         des: 'This is proda 3',
         la_price: 120.99,
         imago: "",
     },
     {
+      id: 4,
         nama: 'proda 4',
         des: 'This is proda 4',
         la_price: 699.99,
@@ -49,22 +53,25 @@ proda.forEach(prod =>{
     // Add event listener to the product card
   prodCard.addEventListener('click', () => {
     // Get the product details on click
+    const productId = prod.id;
     const productName = prod.nama;
     const productPrice = prod.la_price;
     const productDescription = prod.des;
     const productImage = prod.imago;
 
     // Do something with the product details (e.g., display in a modal)
-    console.log('Product clicked:', productName, productPrice, productDescription, productImage);
+    console.log('Product clicked:', 'ID: '+productId, productName, productPrice, productDescription, productImage);
 
     // Example: Display product details in an alert
-    alert(`You clicked on ${productName} ($${productPrice})`);
+    alert(`You clicked on ${productName} ($${productPrice})`+" with ID:"+ productId);
 
     // Redirect to product detail page with query parameters
  // window.location.href = `prod-detail.htm?name=${productName}&price=${productPrice}&description=${productDescription}&image=${productImage}`;
   
    // Alternatively, Store product details in local storage
+   
    localStorage.setItem('productDetails', JSON.stringify({
+    id: productId,
     name: productName,
     price: productPrice,
     description: productDescription,
