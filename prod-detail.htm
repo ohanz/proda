@@ -81,17 +81,42 @@ const addToCart = () => {
 
     // Checkout functionality
     const checkout = () => {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-      const checkoutHTML = `
-        <h2>Checkout</h2>
-        <ul>
-          ${cart.map((item) => `<li>${item.name} x ${item.quantity} - $${(item.price * item.quantity).toFixed(2)}</li>`).join('')}
-        </ul>
-        <p>Total: $${total.toFixed(2)}</p>
-      `;
-      document.querySelector('.checkout-details').innerHTML = checkoutHTML;
-    };
+    //   const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    //   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    //   const checkoutHTML = `
+    //     <h2>Checkout</h2>
+    //     <ul>
+    //       ${cart.map((item) => `<li>${item.name} x ${item.quantity} - $${(item.price * item.quantity).toFixed(2)}</li>`).join('')}
+    //     </ul>
+    //     <p>Total: $${total.toFixed(2)}</p>
+    //   `;
+    //   document.querySelector('.checkout-details').innerHTML = checkoutHTML;
+    
+    // Revised
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+  // Filter out non-object items
+  const validCart = cart.filter((item) => typeof item === 'object');
+  
+  const total = validCart.reduce((acc, item) => {
+    // Ensure price and quantity are numbers
+    const price = parseFloat(item.price) || 0;
+    const quantity = parseInt(item.quantity) || 0;
+    
+    return acc + price * quantity;
+  }, 0);
+  
+  const checkoutHTML = `
+    <h2>Checkout</h2>
+    <ul>
+      ${validCart.map((item) => `<li>${item.name} x ${item.quantity} - $${(item.price * item.quantity).toFixed(2)}</li>`).join('')}
+    </ul>
+    <p>Total: $${isNaN(total) ? '0.00' : total.toFixed(2)}</p>
+  `;
+  
+  document.querySelector('.checkout-details').innerHTML = checkoutHTML;
+
+};
 
     // Event listeners
     document.querySelector('.add-to-cart').addEventListener('click', addToCart);
