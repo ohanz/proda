@@ -9,7 +9,44 @@
 .checkout-container.active {
     display: block;
 } */
+ /* styles.css */
+.checkout-details {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.checkout-details li {
+  margin-bottom: 10px;
+}
+.checkout-details li#bold {
+  font-style: italic;
+}
+
+.checkout-details li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.checkout-details p {
+  font-weight: bold;
+  font-size: 18px;
+  text-align: right;
+}
         </style>
+        <script src="format.js"></script>
     </head>
     <body>
         <h1>Product Details</h1>
@@ -31,6 +68,7 @@
         <div class="checkout-container">
             <button class="checkout">Checkout</button>
             <div class="checkout-details"></div>
+            <p id="countdown-timer"></p>
           </div>
 
         <script>
@@ -46,6 +84,7 @@
 // document.getElementById('product-description').innerHTML = productDescription;
 // document.getElementById('product-image').src = productImage;
 
+
   // Alternatively
   // Retrieve product details from local storage
 const prodDetails = JSON.parse(localStorage.getItem('productDetails'));
@@ -56,6 +95,7 @@ document.getElementById('product-name').innerHTML = prodDetails.name;
 document.getElementById('product-price').innerHTML = '$'+prodDetails.price;
 document.getElementById('product-description').innerHTML = prodDetails.description;
 document.getElementById('product-image').src = prodDetails.image;
+
 
  // Add to cart functionality
 //  const addToCart = () => {
@@ -80,6 +120,7 @@ const addToCart = () => {
     };
 
     // Checkout functionality
+    const countdownTimer = document.getElementById('countdown-timer');
     const checkout = () => {
     //   const cart = JSON.parse(localStorage.getItem('cart')) || [];
     //   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -92,7 +133,7 @@ const addToCart = () => {
     //   `;
     //   document.querySelector('.checkout-details').innerHTML = checkoutHTML;
     
-    // Revised
+    // REVISED
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
   
   // Filter out non-object items
@@ -109,18 +150,39 @@ const addToCart = () => {
   const checkoutHTML = `
     <h2>Checkout</h2>
     <ul>
-      ${validCart.map((item) => `<li>${item.name} x ${item.quantity} - $${(item.price * item.quantity).toFixed(2)}</li>`).join('')}
+      ${validCart.map((item) => `<li id="bold">${item.name} x ${item.quantity} - $${(item.price * item.quantity).toFixed(2)}</li>`).join('')}
     </ul>
     <p>Total: $${isNaN(total) ? '0.00' : total.toFixed(2)}</p>
+    <p>NET: ${formatPricing(total, null)}<p>
+        <br/>
   `;
+//   <p>NET: ${formatPricing(total, null)}<p>
   
   document.querySelector('.checkout-details').innerHTML = checkoutHTML;
+
+  //     setTimeout(()=>{
+//         // Redirect to Order Confirmation page
+//   window.location.href = 'order-confirm-page.htm';
+//     }, 10000);
+
+countdownTimer.innerHTML = 'Redirecting to Order Confirmation page in 10 seconds...';
+    let countdown = 10;
+    const intervalId = setInterval(() => {
+      countdown--;
+      countdownTimer.innerHTML = `Redirecting to Order Confirmation page in ${countdown} seconds...`;
+      if (countdown === 0) {
+        clearInterval(intervalId);
+        // Redirect to Order Confirmation page
+        window.location.href = 'order-confirm-page.htm';
+      }
+    }, 1000);
 
 };
 
     // Event listeners
     document.querySelector('.add-to-cart').addEventListener('click', addToCart);
     document.querySelector('.checkout').addEventListener('click', checkout);
+
 
 
         </script>

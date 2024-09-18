@@ -49,6 +49,7 @@ proda.forEach(prod =>{
       <br/><br/>
       <button>Buy This Now</button>
     `;
+    
 
     // Add event listener to the product card
   prodCard.addEventListener('click', () => {

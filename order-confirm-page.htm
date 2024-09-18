@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .order-confirmation {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-confirmation h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.order-confirmation h2 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.order-confirmation ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.order-confirmation li {
+  margin-bottom: 10px;
+}
+
+.order-confirmation p {
+  margin-bottom: 20px;
+}
+
+
+    </style>
+</head>
+<body>
+<h1>Order C-P</h1>
+<div class="order-confirmation">
+    <h1>Order Confirmation</h1>
+    <p>Thank you for your order!</p>
+    
+    <h2>Order Summary</h2>
+    <ul id="order-summary"></ul>
+    <p id="total"></p>
+    
+    <h2>Payment Details</h2>
+    <p id="payment-method"></p>
+    <p id="payment-status"></p>
+    <p id="transaction-id"></p>
+    
+    <h2>Shipping Information</h2>
+    <p id="shipping-carrier"></p>
+    <p id="tracking-number"></p>
+    <p id="estimated-delivery-date"></p>
+    
+    <h2>Customer Information</h2>
+    <p id="customer-name"></p>
+    <p id="customer-email"></p>
+    <p id="customer-phone"></p>
+  </div>
+  <script src="format.js"></script>
+<script src="order-c-p.js"></script>
+</body>
+</html>
