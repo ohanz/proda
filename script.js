@@ -46,6 +46,37 @@ proda.forEach(prod =>{
       <button>Buy This Now</button>
     `;
 
+    // Add event listener to the product card
+  prodCard.addEventListener('click', () => {
+    // Get the product details on click
+    const productName = prod.nama;
+    const productPrice = prod.la_price;
+    const productDescription = prod.des;
+    const productImage = prod.imago;
+
+    // Do something with the product details (e.g., display in a modal)
+    console.log('Product clicked:', productName, productPrice, productDescription, productImage);
+
+    // Example: Display product details in an alert
+    alert(`You clicked on ${productName} ($${productPrice})`);
+
+    // Redirect to product detail page with query parameters
+ // window.location.href = `prod-detail.htm?name=${productName}&price=${productPrice}&description=${productDescription}&image=${productImage}`;
+  
+   // Alternatively, Store product details in local storage
+   localStorage.setItem('productDetails', JSON.stringify({
+    name: productName,
+    price: productPrice,
+    description: productDescription,
+    image: productImage
+  }));
+
+  // Redirect to product detail page
+  window.location.href = 'prod-detail.htm';
+
+});
+
+
     // apending the proda cards to myProdaContainer
     myProdaContainer.appendChild(prodCard);
 });

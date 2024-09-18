@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1>Product Details</h1>
+        <section>
+            <div>
+        <img id="product-image" src="" alt="">
+      <div class="product-info">
+      <h3 id="product-name"></h3>
+      <p id="product-description"></p>
+      <p id="product-price"></p>
+      
+      </div>
+            </div>
+        </section>
+
+        <script>
+//             const urlParams = new URLSearchParams(window.location.search);
+// const productName = urlParams.get('name');
+// const productPrice = urlParams.get('price');
+// const productDescription = urlParams.get('description');
+// const productImage = urlParams.get('image');
+
+// // Display product details
+// document.getElementById('product-name').innerHTML = productName;
+// document.getElementById('product-price').innerHTML = productPrice;
+// document.getElementById('product-description').innerHTML = productDescription;
+// document.getElementById('product-image').src = productImage;
+
+  // Alternatively
+  // Retrieve product details from local storage
+const prodDetails = JSON.parse(localStorage.getItem('productDetails'));
+
+// Display product details
+document.getElementById('product-name').innerHTML = prodDetails.name;
+document.getElementById('product-price').innerHTML = '$'+prodDetails.price;
+document.getElementById('product-description').innerHTML = prodDetails.description;
+document.getElementById('product-image').src = prodDetails.image;
+
+
+        </script>
+    </body>
+</html>
