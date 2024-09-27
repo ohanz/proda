@@ -1,6 +1,10 @@
 // Import required libraries
 const crypto = window.crypto || window.msCrypto;
 
+// to be used booleans
+let userSignedIn = false
+let userSignedUp = false;
+
 // Function to hash password
 function hashPassword(password) {
   const encoder = new TextEncoder();
@@ -29,6 +33,8 @@ async function signIn() {
   if (user) {
     localStorage.setItem('currentUser', JSON.stringify(user));
     document.getElementById('message').innerHTML = 'Signed in successfully!';
+    // Show Sign-In Status Above.
+
   } else {
     document.getElementById('message').innerHTML = 'Invalid credentials!';
   }
@@ -47,7 +53,8 @@ async function signUp() {
     localStorage.setItem('users', JSON.stringify(users));
     localStorage.setItem('currentUser', JSON.stringify(user));
     document.getElementById('message').innerHTML = 'Signed up successfully!';
-    showSignInForm();
+    showSignInForm(); // Now Sign-In and Be redirected to Last Page.
+    
   } else {
     document.getElementById('message').innerHTML = 'Passwords do not match!';
   }
