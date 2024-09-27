@@ -53,18 +53,40 @@ async function signUp() {
   }
 }
 
-// Toggle forms
-function showSignInForm() {
-  document.getElementById('signInForm').style.display = 'block';
-  document.getElementById('signUpForm').style.display = 'none';
-}
 
-function showSignUpForm() {
-  document.getElementById('signInForm').style.display = 'none';
-  document.getElementById('signUpForm').style.display = 'block';
-}
+// Get elements
+const showSignUpFormLink = document.getElementById('showSignUpForm');
+const showSignInFormLink = document.getElementById('showSignInForm');
+const signInForm = document.getElementById('signInForm');
+const signUpForm = document.getElementById('signUpForm');
 
 // Add event listeners
-document.getElementById('signInButton').addEventListener('click', signIn);
-document.getElementById('signUpButton').addEventListener('click', signUp);
-document.getElementById('showSignInForm').addEventListener('click', showSignInForm);
+showSignUpFormLink.addEventListener('click', showSignUpForm);
+showSignInFormLink.addEventListener('click', showSignInForm);
+
+// Functions to toggle forms
+function showSignUpForm() {
+  signInForm.style.display = 'none';
+  signUpForm.style.display = 'block';
+}
+
+function showSignInForm() {
+  signInForm.style.display = 'block';
+  signUpForm.style.display = 'none';
+}
+
+// // Toggle forms
+// function showSignInForm() {
+//   document.getElementById('signInForm').style.display = 'block';
+//   document.getElementById('signUpForm').style.display = 'none';
+// }
+
+// function showSignUpForm() {
+//   document.getElementById('signInForm').style.display = 'none';
+//   document.getElementById('signUpForm').style.display = 'block';
+// }
+
+// // Add event listeners
+// document.getElementById('signInButton').addEventListener('click', signIn);
+// document.getElementById('signUpButton').addEventListener('click', signUp);
+// document.getElementById('showSignInForm').addEventListener('click', showSignInForm);
