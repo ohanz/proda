@@ -50,7 +50,33 @@ button[type="button"]:hover {
     background-color: #3e8e41;
 }
 
-#message {
+/* #message {
     text-align: center;
     color: #008000;
-}
+} */
+#message {
+    color: #008000; /* Green for success messages */
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  #message.error-null {
+    color: #008000; /* Green for success messages */
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  #message.error {
+    color: #FF0000; /* Red for error messages */
+  }
+
+
+#message ul {
+    list-style: disc;
+    padding-left: 20px;
+  }
+  
+  #message li {
+    font-size: 14px;
+  }
+  
