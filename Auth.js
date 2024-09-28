@@ -308,6 +308,11 @@ function validatePassword(password) {
 // }
 
 // // Add event listeners
-document.getElementById('signInButton').addEventListener('click', signIn);
+// document.getElementById('signInButton').addEventListener('click', signIn);
+// Add event listener
+signInForm.addEventListener('submit', (e) => {
+  e.preventDefault(); // Prevent default form submission
+  signIn(); // Call signIn function
+});
 document.getElementById('signUpButton').addEventListener('click', signUp);
 // document.getElementById('showSignInForm').addEventListener('click', showSignInForm);
