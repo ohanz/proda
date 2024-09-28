@@ -6,28 +6,28 @@ const proda = [
         nama: 'proda 1',
         des: 'This is proda 1',
         la_price: 20.40,
-        imago: "",
+        imago: "images/image1.jpeg",
     },
     {
       id: 2,
         nama: 'proda 2',
         des: 'This is proda 2',
         la_price: 13.95,
-        imago: "",
+        imago: "images/image2.jpeg",
     },
     {
       id: 3,
         nama: 'proda 3',
         des: 'This is proda 3',
         la_price: 120.99,
-        imago: "",
+        imago: "images/image3.jpeg",
     },
     {
       id: 4,
         nama: 'proda 4',
         des: 'This is proda 4',
         la_price: 699.99,
-        imago: "",
+        imago: "images/image4.jpeg",
     },
 ]
 
@@ -40,7 +40,7 @@ proda.forEach(prod =>{
     prodCard.classList.add('product-card');
 
     prodCard.innerHTML = `
-      <img src="${prod.imago}" alt="${prod.nama}">
+      <img id="product-imago" src="${prod.imago}" alt="${prod.nama}">
       <div class="product-info">
       <h3>${prod.nama}</h3>
       <p>${prod.des}</p>
