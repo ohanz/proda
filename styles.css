@@ -57,7 +57,10 @@ button[type="button"]:hover {
 #message {
     color: #008000; /* Green for success messages */
     font-weight: bold;
-    margin-bottom: 20px;
+   
+  }
+  #message, button{
+   margin-bottom: 20px !important  
   }
 
   #message.error-null {
@@ -79,4 +82,6 @@ button[type="button"]:hover {
   #message li {
     font-size: 14px;
   }
+  p span {cursor: pointer; color: #51c151; font-weight: bold;}
+  p span:hover {color: #008000;}
   

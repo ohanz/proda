@@ -88,3 +88,25 @@ proda.forEach(prod =>{
     // apending the proda cards to myProdaContainer
     myProdaContainer.appendChild(prodCard);
 });
+
+
+// Status Check
+ // Check if user is signed in
+ const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+ if (currentUser) {
+  document.getElementById('Sign-in-Status').style.display = 'none';
+   // Display user greeting
+   document.getElementById('user-greeting').innerHTML = `Hye there! Welcome, <b>${currentUser.email}!<b>`;
+   // Show sign-out button
+   document.getElementById('sign-out-button').style.display = 'block';
+ } else {
+   // Hide sign-out button
+   document.getElementById('sign-out-button').style.display = 'none';
+ }
+
+ // Sign-out functionality
+ document.getElementById('sign-out-button').addEventListener('click', () => {
+   localStorage.removeItem('currentUser');
+   window.location.href = 'signIn.htm'; // Redirect to sign-in page
+ });

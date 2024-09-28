@@ -64,6 +64,7 @@ async function signIn() {
   localStorage.setItem('currentUser', JSON.stringify(user));
 
   message.innerHTML = 'Signed in successfully!';
+  document.getElementById('signInButton').disabled = true;
   // Call showSignInForm() or redirect to dashboard
   countdownTimer.innerHTML = 'Redirecting to Home in 10 seconds...';
     let countdown = 10;
@@ -76,6 +77,7 @@ async function signIn() {
         window.location.href = 'index.htm';
       }
     }, 1000);
+
 }
 
 // Sign-up function
@@ -161,11 +163,13 @@ async function signUp() {
   const errors = validatePassword(password);
   if (errors.length > 0) {
     message.innerHTML = 'Password requirements not met!';
+    document.getElementById('message').className = 'error';
     return;
   }
 
   if (password !== confirmPassword) {
     message.innerHTML = 'Passwords do not match!';
+    document.getElementById('message').className = 'error';
     return;
   }
 
@@ -177,6 +181,7 @@ async function signUp() {
   const existingUser = users.find((u) => u.email === email);
   if (existingUser) {
     message.innerHTML = 'Email already in use!';
+    document.getElementById('message').className = 'error';
     return;
   }
 
@@ -189,7 +194,11 @@ async function signUp() {
   localStorage.setItem('currentUser', JSON.stringify(user));
 
   message.innerHTML = 'Signed up successfully!';
+  document.getElementById('message').className = 'success';
+  document.getElementById('signUpButton').disabled = true;
+
   signedUp = true; // dont show sign-in again in toggle
+  showSignInForm();
 
 }
 
@@ -197,8 +206,8 @@ async function signUp() {
 // Get elements
 const showSignUpFormLink = document.getElementById('showSignUpForm');
 const showSignInFormLink = document.getElementById('showSignInForm');
-const signInForm = document.getElementById('signInForm');
-const signUpForm = document.getElementById('signUpForm');
+let signInForm = document.getElementById('signInForm');
+let signUpForm = document.getElementById('signUpForm');
 
 // Add event listeners
 showSignUpFormLink.addEventListener('click', showSignUpForm);
@@ -208,17 +217,26 @@ showSignInFormLink.addEventListener('click', showSignInForm);
 function showSignUpForm() {
   signInForm.style.display = 'none';
   signUpForm.style.display = 'block';
+  message.innerHTML = '';
 }
 
 function showSignInForm() {
-  // if(!signedUp){
-  //   setTimeout(() => {
-  //     signInForm.style.display = 'block';
-  //     signUpForm.style.display = 'none';
-  // }, 5000); // Wait for 5 seconds 
-  // }
-  signInForm.style.display = 'block';
-  signUpForm.style.display = 'none';
+  message.innerHTML = '';
+  if(signedUp){
+    setTimeout(() => {
+      document.getElementById('sign-in-Talker').textContent = "You've Signed-Up. Sign In Now!";
+      signInForm.style.display = 'block';
+      signUpForm.style.display = 'none';
+      message.innerHTML = '';
+  }, 5000); // Wait for 5 seconds 
+  }
+  else{
+     document.getElementById('sign-in-Talker').textContent = "Sign In";
+    signInForm.style.display = 'block';
+  signUpForm.style.display = 'none'; 
+  }
+
+     
  
 }
 
@@ -309,8 +327,8 @@ function validatePassword(password) {
 
 // // Add event listeners
 // document.getElementById('signInButton').addEventListener('click', signIn);
-// Add event listener
-signInForm.addEventListener('submit', (e) => {
+// Resolved event submit here
+document.getElementById('signInButton').addEventListener('click', (e) => {
   e.preventDefault(); // Prevent default form submission
   signIn(); // Call signIn function
 });
