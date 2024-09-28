@@ -54,7 +54,7 @@ async function signUp() {
     localStorage.setItem('currentUser', JSON.stringify(user));
     document.getElementById('message').innerHTML = 'Signed up successfully!';
     showSignInForm(); // Now Sign-In and Be redirected to Last Page.
-    
+
   } else {
     document.getElementById('message').innerHTML = 'Passwords do not match!';
   }
@@ -81,6 +81,40 @@ function showSignInForm() {
   signInForm.style.display = 'block';
   signUpForm.style.display = 'none';
 }
+
+function validatePassword(password) {
+    const errors = [];
+    if (password.length < 8) {
+      errors.push('Password must be at least 8 characters');
+    }
+    if (!/[A-Z]/.test(password)) {
+      errors.push('Password must contain at least 1 uppercase letter');
+    }
+    if (!/[a-z]/.test(password)) {
+      errors.push('Password must contain at least 1 lowercase letter');
+    }
+    if (!/\d/.test(password)) {
+      errors.push('Password must contain at least 1 number');
+    }
+    if (!/[^A-Za-z0-9]/.test(password)) {
+      errors.push('Password must contain at least 1 special character');
+    }
+    return errors;
+  }
+
+  const passwordInput = document.getElementById('signUpPassword');
+passwordInput.addEventListener('input', () => {
+  const password = passwordInput.value;
+  const errors = validatePassword(password);
+  if (errors.length > 0) {
+    // Display errors
+    console.log(errors)
+    console.log('error occured')
+  } else {
+    // Password is valid
+    console.log('Strong Password')
+  }
+});
 
 // // Toggle forms
 // function showSignInForm() {
