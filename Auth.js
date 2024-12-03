@@ -162,7 +162,9 @@ async function signUp() {
   // Validate user input
   const errors = validatePassword(password);
   if (errors.length > 0) {
-    message.innerHTML = 'Password requirements not met!';
+    // message.innerHTML = 'Password requirements not met!';
+    const errorMessage = errors.join("<br>");
+    message.innerHTML = `<h3>Oopsie, error occurred</h3>:<br><i>${errorMessage}</i>`;
     document.getElementById('message').className = 'error';
     return;
   }

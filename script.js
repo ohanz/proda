@@ -33,7 +33,7 @@ const proda = [
 
 // fetch-get 
 
-const myProdaContainer = document.querySelector('.my-product-cont');
+    const myProdaContainer = document.querySelector('.my-product-cont');
 //loppper
 proda.forEach(prod =>{
     const prodCard = document.createElement('div');
@@ -110,3 +110,6 @@ proda.forEach(prod =>{
    localStorage.removeItem('currentUser');
    window.location.href = 'signIn.htm'; // Redirect to sign-in page
  });
+
+
+
